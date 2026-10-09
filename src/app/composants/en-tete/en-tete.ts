@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+  standalone: true,
   imports: [],
   selector: 'app-en-tete',
   styleUrl: './en-tete.css',

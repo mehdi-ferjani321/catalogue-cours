@@ -1,0 +1,12 @@
+@if (cours; as selectedCours) {
+  <aside class="detail-cours">
+    <h2>{{ selectedCours.titre }}</h2>
+    <p>Catégorie : {{ selectedCours.categorie }}</p>
+    <p>Durée : {{ selectedCours.duree }}</p>
+    <p>Places disponibles : {{ selectedCours.places }}</p>
+  </aside>
+} @else {
+  <aside class="detail-cours detail-cours--vide">
+    <p>Sélectionnez un cours dans la liste pour voir son détail.</p>
+  </aside>
+}
