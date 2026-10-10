@@ -1,18 +1,14 @@
 import { Component, Input } from '@angular/core';
-
-export interface Cours {
-  titre: string;
-  categorie: string;
-  duree: string;
-  places: number;
-}
+import { Cours } from '../../models/cours.ts';
 
 @Component({
-  standalone: true,
-  selector: 'app-details-cours',
-  templateUrl: './details-cours.html',
+  imports: [],
+  selector: 'app-detail-cours',
   styleUrl: './details-cours.css',
+  templateUrl: './details-cours.html',
 })
-export class DetailsCours {
+export class DetailCours {
   @Input() cours: Cours | null = null;
 }
+export type { Cours };
+
