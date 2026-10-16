@@ -1,13 +1,19 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Cours } from '../../models/cours.ts';
-
+import { FilterCoursPipe } from '../../pipes/filter-cours-pipe.ts';
+import { TriCoursPipe } from '../../pipes/tri-cours-pipe.ts';
+import { UpperCasePipe } from '@angular/common';
 @Component({
-  imports: [],
+  imports: [FormsModule , FilterCoursPipe , TriCoursPipe , UpperCasePipe],
   selector: 'app-liste-cours',
   styleUrl: './liste-cours.css',
   templateUrl: './liste-cours.html',
 })
 export class ListeCours {
+  recherche ='';
+  tri : 'asc' | 'desc' = 'asc'; 
+  // ... coursActif, coursSelectionne, cours, selectionner() inchangés
   @Output() coursSelectionne = new EventEmitter<Cours>();
   coursActif: Cours | null = null;
 

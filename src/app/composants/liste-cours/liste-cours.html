@@ -1,11 +1,26 @@
+<div>
+  <input [(ngModel)] ="recherche" placeholder="Rechercher un cour ...">
+  <select [(ngModel)] ="tri" >
+    <option value="asc">tri A -> Z</option>
+    <option value="desc">tri Z -> A</option>
+  </select>
+</div>
 <section class="liste-cours">
-  @for (c of cours; track c.titre) {
+  @for (c of cours | filterCours:recherche | triCours:tri; track c.titre) {
     <article class="carte-cours" [class.actif]="c === coursActif" (click)="selectionner(c)">
       <h2>{{ c.titre }}</h2>
-      <p>Catégorie : {{ c.categorie }}</p>
+      @switch (c.categorie) {
+        @case ('Front-end') { <span class="badge badge--frontend">{{ c.categorie | uppercase }}</span> }
+        @case ('Back-end') { <span class="badge badge--backend">{{ c.categorie | uppercase}}</span> }
+        @case ('Langage') { <span class="badge badge--langage">{{ c.categorie | uppercase}}</span> }
+        @default { <span class="badge badge--autre">{{ c.categorie | uppercase }}</span> }
+      }
       <p>Durée : {{ c.duree }}</p>
       <p>Places disponibles : {{ c.places }}</p>
     </article>
   }
+   @empty {
+<p class="liste-vide">Aucun cours ne correspond à la recherche.</p>
+}
 </section>
 

@@ -3,5 +3,6 @@
     <h1>{{titre}}</h1>
     <button (click)="changeLogo()">Changer le titre</button><br/>
     <input type="text" [(ngModel)]="titre" placeholder="Saisir le titre" size="100" />
+    <p text>{{today | date :'dd/mm/yyyy'}}</p>
 </header>
 
