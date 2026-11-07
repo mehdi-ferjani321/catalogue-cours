@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Cours } from '../../models/cours.ts';
+import type { Cours } from '../../../donnees/cours/cours';
 
 @Component({
   imports: [],
@@ -10,5 +10,3 @@ import { Cours } from '../../models/cours.ts';
 export class DetailCours {
   @Input() cours: Cours | null = null;
 }
-export type { Cours };
-

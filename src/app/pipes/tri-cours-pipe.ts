@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Cours } from '../models/cours'; 
+import type { Cours } from '../../donnees/cours/cours';
 @Pipe({
   name: 'triCours',
 })
 export class TriCoursPipe implements PipeTransform {
   transform(cours: Cours[], sens: 'asc' | 'desc' = 'asc'): Cours[] {
-    const copie = [...cours].sort((a,b)=> a.titre.localeCompare(b.titre)); 
-    return sens === 'desc' ? copie.reverse():copie; 
+    const copie = [...cours].sort((a, b) => a.titre.localeCompare(b.titre));
+    return sens === 'desc' ? copie.reverse() : copie;
   }
 }

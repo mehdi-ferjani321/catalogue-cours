@@ -1,8 +1,19 @@
 import { TestBed } from '@angular/core/testing';
+import { afterEach, vi } from 'vitest';
 import { App } from './app';
 
 describe('App', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
   beforeEach(async () => {
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+      },
+    );
     await TestBed.configureTestingModule({
       imports: [App],
     })
@@ -19,6 +30,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, catalogue-standalone');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Catalogue de cours');
   });
 });

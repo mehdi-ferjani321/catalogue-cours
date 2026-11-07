@@ -1,5 +1,5 @@
 <div>
-  <input [(ngModel)] ="recherche" placeholder="Rechercher un cour ...">
+  <input [(ngModel)]="recherche" placeholder="Rechercher un cours...">
   <select [(ngModel)] ="tri" >
     <option value="asc">tri A -> Z</option>
     <option value="desc">tri Z -> A</option>
@@ -7,7 +7,7 @@
 </div>
 
 <section class="liste-cours">
-  @for (c of cours | filterCours:recherche | triCours:tri; track c.titre) { 
+  @for (c of cours | filterCours:recherche | triCours:tri; track c.id) {
     <article class="carte-cours" [class.actif]="c === coursActif" (click)="selectionner(c)">
       <h2>{{ c | tronquer:20 }}</h2>
       @switch (c.categorie) {
@@ -17,12 +17,11 @@
         @default { <span class="badge badge--autre">{{ c.categorie | uppercase }}</span> }
       }
       <p>Durée : {{ c.duree }}</p>
-      <p>Places disponibles : {{ c.places }}</p>
-      <p>Places disponibles : {{ c | placesRestantes : c.places }}</p>
+      <p>{{ c | placesRestantes }}</p>
+      <a [routerLink]="['/cours', c.id]">Voir le détail</a>
     </article>
   }
-   @empty {
-<p class="liste-vide">Aucun cours ne correspond à la recherche.</p>
-}
+  @empty {
+    <p class="liste-vide">Aucun cours ne correspond à la recherche.</p>
+  }
 </section>
-

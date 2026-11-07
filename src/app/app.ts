@@ -1,13 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
 import { EnTete } from './composants/en-tete/en-tete';
-import { ListeCours } from './composants/liste-cours/liste-cours';
 import { PiedPage } from './composants/pied-page/pied-page';
-import { Cours } from './models/cours';
-import { DetailCours } from './composants/details-cours/details-cours';
+import type { Cours } from '../donnees/cours/cours';
+import {Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Session } from './services/session';
+
 
 @Component({
-  imports: [EnTete, ListeCours, PiedPage, DetailCours],
+  imports: [EnTete, PiedPage ,RouterOutlet,RouterLink, RouterLinkActive],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -18,5 +18,13 @@ export class App {
   onSelectionCours(c: Cours) {
     this.coursSelectionne = c;
   }
+
+  session = inject(Session);
+  private router = inject(Router);
+  deconnecter() {
+  this.session.deconnecter();
+  this.router.navigateByUrl('/');
+  }
+
 
 }
