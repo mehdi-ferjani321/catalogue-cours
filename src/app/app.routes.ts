@@ -12,5 +12,6 @@ export const routes: Routes = [
 { path: 'cours/:id', component: PageDetail, title: 'Détail du cours' },
 { path: 'connexion', component: Connexion, title: 'Connexion' },
 { path: 'mes-inscription',  component: MesInscriptions, title: 'Mes inscriptions' },
+{path: 'catalogue',redirectTo: 'cours', pathMatch: 'full'},
 { path: '**', component: Introuvable, title: 'Page introuvable' },
 ];
